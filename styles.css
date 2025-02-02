@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.game-container {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-controls {
+  margin-bottom: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.card.flipped {
+  background-color: white;
+}
+
+.card.matched {
+  background-color: #4caf50;
+  pointer-events: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+select {
+  padding: 5px;
+}
+
+/* .home-container {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    width: 80%;
+    max-width: 400px;
+    
+} */
+
+
+.results-container {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  width: 80%;
+  max-width: 400px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 100px;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.home-container {
+  position: relative;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Spinner Style */
+/* .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3; Light gray;
+    border-top: 5px solid #3498db; Blue;
+    animation: spin 1s linear infinite;
+    display: none; Hidden by default;
+    transform: translate(-50%, -50%);
+} */
+
+/* Spinner Animation */
+/*@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}*/
+
+/* .spinner{
+    margin-top: 40%;
+    width: 40%;
+    height: 3px;
+    background: lightblue;
+    position: relative;
+}
+
+.spinner::before{
+    content: "";
+    position: absolute;
+    background:lightsalmon;
+    width: 0;
+    height: 4px;
+    animation: movingLine 5s ease-in-out infinite;
+    
+}
+
+@keyframes movingLine {
+    50%{
+        width: 100%;
+    }
+    100%{
+        width: 0;
+        right: 0;
+        left: unset;
+    }
+}   */
+/* Loading screen style */
+/* .loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    opacity: 1;
+    transition: opacity 1s ease;
+} */
+
+/* After the page is loaded */
+/* .loading.fade-out {
+    opacity: 0;
+} */
+
+/* body {
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+}
+html, body { min-height: 100%; }
+body.loading {
+    background: #333 url('http://code.jquery.com/mobile/1.3.1/images/ajax-loader.gif') no-repeat 50% 50%;
+    -webkit-transition: background-color 0;
+    transition: background-color 0;
+    opacity: 0;
+    -webkit-transition: opacity 0;
+    transition: opacity 0;
+} */
+
+/* Index Page style */
+
+
+/* .button {
+  background-color: #cd9eff;
+  width: 562.1px;
+  height: 100.3px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  padding: 0px 0px 50px 50px;
+  text-align: center;
+  text-decoration: ;
+  display: flex;
+  position:absolute;
+  bottom:0;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+} */
+
+/* Level Page Style */

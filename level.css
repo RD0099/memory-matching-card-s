@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.img2 {
+    /* height: 100vh;
+    width: 100vw;
+    background-image: url("images/level.jpg");
+     background-size: 100% 100%;
+    background-size: cover; /* Ensures the background fully covers the screen */
+    /* background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+     height: 100vh;
+    width: 100vw; */ 
+
+     height: 100vh;
+  background-image: url("images/level.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-size: 100% 100%
+   
+}
+
+/* Wrapper for level title and buttons */
+.box-wrapper {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LEVEL title */
+.level {
+    color: white;
+    font-size: 5vw; /* Responsive font size */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Buttons container */
+.btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for buttons */
+.button {
+   margin-left: 10%;
+    background-color: #cd9eff;
+    width: 90%; /* Adjusts dynamically */
+    max-width: 450px; /* Limits max width */
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-size: 3vw; /* Responsive text size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Button hover effect */
+.button:hover {
+    background-color: #a67edb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .level {
+        font-size: 6vw; /* Slightly larger for smaller screens */
+    }
+
+    .button {
+        font-size: 4vw;
+        padding: 12px;
+        margin-left: 15%;
+    }
+}
+
+@media (max-width: 480px) {
+    .level {
+        font-size: 7vw;
+    }
+
+    .button {
+        font-size: 5vw;
+        padding: 10px;
+        margin-left: 5%;
+    }
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game - Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="results-container">
+        <h1>Congratulations!</h1>
+        <p>You completed the game in <span id="final-time">0</span> seconds!</p>
+        <button onclick="location.href='game.html'">Play Again</button>
+        <button onclick="location.href='home.html'">Back to Home</button>
+    </div>
+    <script>
+        // Populate final time dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+            const finalTime = localStorage.getItem('finalTime');
+            document.getElementById('final-time').textContent = finalTime || 0;
+        });
+    </script>
+</body>
+</html>
+

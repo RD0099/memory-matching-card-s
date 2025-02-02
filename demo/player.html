@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Match</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f0f0f0; margin: 0; padding: 20px; }
+        .hidden { display: none; }
+        #app { display: grid; gap: 10px; grid-template-columns: repeat(4, 80px); justify-content: center; }
+        .card { width: 80px; height: 80px; background: #007BFF; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 6px; }
+        .card.flipped { background: #fff; color: #000; cursor: default; }
+    </style>
+</head>
+<body>
+    <div id="menu" v-show="!gameStarted">
+        <h1>Memory Match</h1>
+        <button @click="startGame('1-player')">1 Player</button>
+        <button @click="startGame('player-vs-computer')">Player vs Computer</button>
+    </div>
+
+    <div id="app" v-show="gameStarted">
+        <p>Player: {{ playerScore }} | {{ gameMode === 'player-vs-computer' ? 'Computer' : 'Opponent' }}: {{ opponentScore }}</p>
+        <div v-for="(card, i) in cards" :key="i" class="card" :class="{ flipped: card.flipped || card.matched }" @click="flipCard(i)">
+            <span v-if="card.flipped || card.matched">{{ card.value }}</span>
+        </div>
+        <button @click="resetGame">Reset</button>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    gameStarted: false,
+                    gameMode: '',
+                    cards: [],
+                    flipped: [],
+                    playerScore: 0,
+                    opponentScore: 0,
+                    playerTurn: true
+                };
+            },
+            methods: {
+                startGame(mode) {
+                    this.gameMode = mode;
+                    this.resetGame();
+                    this.gameStarted = true;
+                },
+                initCards() {
+                    const values = Array.from({ length: 8 }, (_, i) => i + 1);
+                    this.cards = [...values, ...values].sort(() => Math.random() - 0.5).map(v => ({ value: v, flipped: false, matched: false }));
+                },
+                flipCard(index) {
+                    if (this.cards[index].flipped || this.cards[index].matched || this.flipped.length === 2 || !this.playerTurn) return;
+                    this.cards[index].flipped = true;
+                    this.flipped.push(index);
+                    if (this.flipped.length === 2) this.checkMatch();
+                },
+                checkMatch() {
+                    const [a, b] = this.flipped;
+                    if (this.cards[a].value === this.cards[b].value) {
+                        this.cards[a].matched = this.cards[b].matched = true;
+                        this.playerTurn ? this.playerScore++ : this.opponentScore++;
+                    } else {
+                        setTimeout(() => {
+                            this.cards[a].flipped = this.cards[b].flipped = false;
+                        }, 800);
+                    }
+                    this.flipped = [];
+                    this.toggleTurn();
+                    if (this.gameMode === 'player-vs-computer' && !this.playerTurn) setTimeout(this.computerMove, 1000);
+                },
+                computerMove() {
+                    const available = this.cards.map((c, i) => (!c.flipped && !c.matched ? i : null)).filter(i => i !== null);
+                    if (available.length >= 2) {
+                        this.flipCard(available[Math.floor(Math.random() * available.length)]);
+                        setTimeout(() => this.flipCard(available.find(i => !this.cards[i].flipped)), 500);
+                    }
+                },
+                toggleTurn() {
+                    this.playerTurn = !this.playerTurn;
+                },
+                resetGame() {
+                    this.initCards();
+                    this.playerScore = this.opponentScore = 0;
+                    this.playerTurn = true;
+                },
+            },
+            mounted() {
+                this.initCards();
+            },
+        });
+        app.mount('body');
+    </script>
+</body>
+</html>

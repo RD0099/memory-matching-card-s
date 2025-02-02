@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game - Player vs Player</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 100px); gap: 10px; justify-content: center; }
+    .card { width: 100px; height: 100px; background: #007bff; color: white; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .card.flipped, .card.matched { background: #28a745; cursor: default; }
+    .score { margin: 20px 0; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Memory Game - Player vs Player</h1>
+  <div class="grid" id="board"></div>
+  <div class="score" id="score">Player 1: 0 | Player 2: 0</div>
+  <button onclick="startGame()">Restart</button>
+
+  <script>
+    let cards = [], flipped = [], turn = 1, score = { player1: 0, player2: 0 };
+
+    const startGame = () => {
+      const symbols = ['🍎','🍌','🍇','🍒','🍓','🥝','🍍','🥭'];
+      cards = [...symbols, ...symbols].sort(() => Math.random() - 0.5).map((s, i) => ({ id: i, s, flipped: false, matched: false }));
+      flipped = [];
+      turn = 1; // Player 1 starts
+      score = { player1: 0, player2: 0 };
+      updateBoard();
+    };
+
+    const updateBoard = () => {
+      document.getElementById('board').innerHTML = cards.map(c => 
+        `<div class="card ${c.flipped || c.matched ? 'flipped' : ''}" onclick="flip(${c.id})">${c.flipped || c.matched ? c.s : '?'}</div>`).join('');
+      document.getElementById('score').innerText = `Player 1: ${score.player1} | Player 2: ${score.player2}`;
+    };
+
+    const flip = id => {
+      if (flipped.length < 2 && !cards[id].flipped && !cards[id].matched) {
+        cards[id].flipped = true;
+        flipped.push(id);
+        updateBoard();
+        if (flipped.length === 2) setTimeout(checkMatch, 800);
+      }
+    };
+
+    const checkMatch = () => {
+      const [a, b] = flipped;
+      if (cards[a].s === cards[b].s) {
+        cards[a].matched = cards[b].matched = true;
+        score[turn === 1 ? 'player1' : 'player2']++;
+        flipped = [];
+        updateBoard();
+        if (!gameOver()) {
+          turn = turn === 1 ? 2 : 1; // Switch turn
+          updateBoard();
+        }
+      } else {
+        cards[a].flipped = cards[b].flipped = false;
+        flipped = [];
+        turn = turn === 1 ? 2 : 1; // Switch turn
+        updateBoard();
+      }
+    };
+
+    const gameOver = () => {
+      return cards.every(c => c.matched); // Check if all cards are matched
+    };
+
+    startGame();
+  </script>
+</body>
+</html>

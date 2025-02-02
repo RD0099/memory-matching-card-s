@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.img1 {
+  height: 100vh;
+  background-image: url("images/gamemode.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-size: 100% 100%
+}
+
+.box-wrapper {
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-mode {
+  color: white;
+  font-size: 5vw; /* Scales with viewport width */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.button {
+  margin-left: 10%;
+  background-color: #cd9eff;
+  width: 100%; /* Adjusts width dynamically */
+  max-width: 500px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  padding: 15px;
+  font-size: 3vw; /* Scales based on viewport width */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background-color: #a67edb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-mode {
+    font-size: 6vw; /* Slightly larger for smaller screens */
+  }
+
+  .button {
+
+    font-size: 4vw; /* Adjust button text size */
+    padding: 12px;
+  }
+
+}
+@media (max-width: 686px) {
+
+  .button {
+    margin-left: 0;
+    
+  }
+}
+
+@media (max-width: 480px) {
+  .game-mode {
+    font-size: 7vw;
+  }
+
+  .button {
+    font-size: 5vw;
+    padding: 10px;
+  }
+}

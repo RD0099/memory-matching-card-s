@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .img2 {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("images/category.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  /* Wrapper for smooth horizontal scrolling */
+  .scroll-wrapper {
+    width: 80%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Scroll container with snapping */
+  .category-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    gap: 1rem;
+    padding: 2rem;
+    scroll-snap-type: x mandatory; /* Enables smooth snap scrolling */
+    overflow-x: auto;
+    scrollbar-width: none; /* Hides scrollbar for a clean look */
+    -ms-overflow-style: none;
+  }
+  
+  /* Hide scrollbar for webkit browsers */
+  .category-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Each category item should snap */
+  .category-item {
+    flex: 0 0 calc(30% - 1rem); /* 3 items per scroll */
+    scroll-snap-align: start; /* Ensures smooth snap */
+    background-color: #ffd37d;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 10px 10px 2px #ff6a5c;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .category-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .category-item h3 {
+    margin-bottom: 0.5rem;
+    color: #673999;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  /* Hover Effect */
+  .category-item:hover {
+    transform: scale(1.05);
+    box-shadow: 15px 15px 4px #ff6a5c;
+  }
+  
+  /* Ensure images keep aspect ratio */
+  img {
+    aspect-ratio: 1 / 1;
+    mix-blend-mode: multiply;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .category-item {
+        flex: 0 0 calc(50% - 1rem); /* 2 items per scroll */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .category-item {
+        flex: 0 0 calc(100% - 1rem); /* 1 item per scroll */
+    }
+  }
